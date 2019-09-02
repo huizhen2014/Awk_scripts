@@ -1,0 +1,2 @@
+#在BEGIN中使用while getline读取文件，循环中嵌套getline会出错
+#请在BEGIN中使用while getline加Number/4的循环形式

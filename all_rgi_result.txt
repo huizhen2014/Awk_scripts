@@ -1,0 +1,12 @@
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/40847_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/34978_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/42474_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/42277_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/36013_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/38218_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/36472_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/36170_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/40702_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/42395_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/38588_rgi_result.txt
+/Data_analysis/k.pnuemoniae_divergetn_mic/total_mic/pan_rgi_output/35430_rgi_result.txt
