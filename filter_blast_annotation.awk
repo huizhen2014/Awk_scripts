@@ -1,8 +1,13 @@
 ##diamond blastx 
-##diamond blastx --query-gencode 11 --query-cover 60 -d ../sprot.dmnd -q trinity_out_dir/kp_21_trinity_unique.fasta -f 6 qseqid qlen qstart qend sseqid slen sstart send length pident mismatch gapopen bitscore evalue btop > kp_21_trinity_prokka.results
+##diamond blastx --query-gencode 11 -d ../sprot.dmnd -q trinity_out_dir/kp_21_trinity_unique.fasta -f 6 qseqid qlen qstart qend sseqid slen sstart send length pident mismatch gapopen bitscore qcovhsp evalue btop qseq > kp_21_trinity_prokka.results
+##diamond blastx qseq为query fasta sequence，if(start < end):substr($seq,start,end-start+1);if(start >end):substr($seq,end,start-end+1)
 
 ##blastx
-##blastx -db ../Bacteria/sprot -evalue 1e-5 -query_gencode 11 -qcov_hsp_perc 60 -query trinity_out_dir/kp_21_trinity_unique.fasta -outfmt "6 qseqid qlen qstart qend sseqid slen sstart send length pident mismatch gapopen bitscore evalue btop" > kp_21_trinity_prokka_blast.results
+##blastx -db ../Bacteria/sprot -evalue 1e-5 -query_gencode 11 -query trinity_out_dir/kp_21_trinity_unique.fasta -outfmt "6 qseqid qlen qstart qend sseqid slen sstart send length pident mismatch gapopen bitscore qcovs evalue btop qseq" > kp_21_trinity_prokka_blast.results
+
+##extact the mapping interval from contig fasta files, if(start < end):substr($seq,start,end-start+1); if(start > end):revcomp(substr($seq,end,start-end+1)) equal to the Protein sequences
+
+##querycov filter > 60 query interval sequence mapping at least 60% of the target sequence
 
 ##Filter the search result with the criteria:If the collected interval would intersect with the next interval, the script would selcet the one with the higher bitscore
 BEGIN{
@@ -27,14 +32,14 @@ BEGIN{
 		    #print "$13",$13,T[13]
 		    if($13 > T[13]){
 			#print Annot[var]
-			print Annot[var] > "Omitted_results.txt"
+			print Annot[var] > "Omitted_results_by_filter.txt"
 			delete Annot[var]
 			Annot[$0]=$0
 			#Tmp[$1]=0
 			next
 		    }else{
 			#print Annot[var]
-			print $0 > "Omitted_results.txt"
+			print $0 > "Omitted_results_by_filter.txt"
 			#Tmp[$1]=0
 			next
 		    }
