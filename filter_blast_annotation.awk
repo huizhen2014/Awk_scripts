@@ -14,49 +14,37 @@ BEGIN{
     FS="\t"
     OFS="\t"
 }
-{
+(sqrt(($3-$4)^2)+1) / ((sqrt(($7-$8)^2)+1)*3) >= 0.6{
     if($1 in Contig){
 	Tmp[$1]=0
 	for(var in Annot){
- 	    #print "length Annot",length(Annot)
 	    split(Annot[var],T,"\t")
 	    if(T[1] == $1){
 		S[1]=$3;S[2]=$4;S[3]=T[3];S[4]=T[4]
-		#print "before",S[1],S[2],S[3],S[4]
 		asort(S)
 		if( ((S[1]==$3) && (S[2]==$4)) || ((S[1]==$4) && (S[2]==$3)) || ((S[1]==T[3]) && (S[2]==T[4])) || ((S[1]==T[4]) && (S[2]==T[3])) ){
 		    Tmp[$1]=Tmp[$1]+1
-		    #print "alfter",S[1],S[2],S[3],S[4]
-		    #print Tmp[$1],Contig[$1]
 		}else{
-		    #print "$13",$13,T[13]
 		    if($13 > T[13]){
-			#print Annot[var]
-			print Annot[var] > "Omitted_results_by_filter.txt"
+			#print Annot[var] > "Omitted_results_by_filter.txt"
 			delete Annot[var]
 			Annot[$0]=$0
-			#Tmp[$1]=0
 			next
 		    }else{
-			#print Annot[var]
-			print $0 > "Omitted_results_by_filter.txt"
-			#Tmp[$1]=0
+			#print $0 > "Omitted_results_by_filter.txt"
 			next
 		    }
 		}
 	    }
 	}
-	    #print Tmp[$1],Contig[$1],$1
 	    if(Tmp[$1]==Contig[$1]){
 		    Annot[$0]=$0
 		    Contig[$1]=Contig[$1]+1
-		    #print "length",length(Annot)
 		    next
 	    }
 	
     }else{
 	Contig[$1]=Contig[$1]+1
-	#print "Contig[$1]",Contig[$1]
 	Annot[$0]=$0
     }
 }
