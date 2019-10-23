@@ -10,11 +10,13 @@
 ##querycov filter > 60 query interval sequence mapping at least 60% of the target sequence
 
 ##Filter the search result with the criteria:If the collected interval would intersect with the next interval, the script would selcet the one with the higher bitscore
+##sort -t\t -k1,1n -k2,2n -k3,3n -k4,4n -k13nr -k10nr blastx.results | gk -f Filter_blast_annotation.awk > blastx_filtered.results
+
 BEGIN{
     FS="\t"
     OFS="\t"
 }
-(sqrt(($3-$4)^2)+1) / ((sqrt(($7-$8)^2)+1)*3) >= 0.6{
+(sqrt(($3-$4)^2)+1) / ($6*3) >= 0.6{
     if($1 in Contig){
 	Tmp[$1]=0
 	for(var in Annot){
@@ -48,8 +50,6 @@ BEGIN{
 	Annot[$0]=$0
     }
 }
-
-
 END{
     for(var in Annot){
 	print Annot[var]
