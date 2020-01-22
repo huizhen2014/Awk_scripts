@@ -38,5 +38,5 @@ BEGIN{
 
 	}while(seq)
 
-i}
+}
 

@@ -35,12 +35,14 @@ BEGIN{
 	}else if($0 ~ "/serovar|/serotype"){
 	    tmp=substr($0,index($0,"\"")+1)
 	    sero=substr(tmp,1,index(tmp,"\"")-1)
-	}else if ($0 ~ "CDS"){
+	}else if ($0 ~ "\\<CDS\\>"){
 	    gsub("[a-zA-Z() ]","",$0)
 	    cds=$0
+	    #Interval[++i]=cds
 	}else if($0 ~ "/gene"){
 	    tmp=substr($0,index($0,"\"")+1)
 	    gene=substr(tmp,1,index(tmp,"\"")-1)
+	    #Gene[++j]=gene
 	}else if($0 ~ "/product"){
 	    tmp=substr($0,index($0,"\"")+1)
 	    if(tmp ~ "\""){
@@ -67,6 +69,7 @@ BEGIN{
 	    
 	    print sprintf(">%s_%s_%s_%s_%s",locus,organism,sero,cds,gene) >>out"_protein.faa"
 	    print translation >> out"_protein.faa"
+	    product="";cds="";gene="";translation=""
 
 	}else if($0 ~ "^ORIGIN"){
 	    do{
@@ -75,7 +78,13 @@ BEGIN{
 			
 			print sprintf(">%s_%s_%s_%s",locus,organism,sero,len) >> out"_cds.fa"
 			print dna >> out"_cds.fa"
-	                cds="";gene="";product="";dna=""
+			locus="";organsim="";sero="";len="";dna=""
+
+			#for(k=1;k<=length(Interval);k++){
+			 #   split(Interval[k],N,".")
+
+
+
 			next
 			
 			}else{
